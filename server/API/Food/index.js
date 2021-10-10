@@ -28,3 +28,5 @@ Router.get("/r/:category", async (req, res) => {
         return res.status(500).json({ error: error.message});
     }
 });
+
+export default Router;

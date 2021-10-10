@@ -7,11 +7,13 @@ import helmet from "helmet";
 import passport from "passport";
 
 
+
 import googleAuthConfig from "./config/google.config";
 
 import Auth from "./API/Auth";
 import Restaurant from "./API/Restaurant";
 import Food from "./API/Food";
+import Image from "./API/Image";
 
 //database connection
 import ConnectDB from "./database/connection";
@@ -32,6 +34,7 @@ googleAuthConfig(passport);
 zomato.use("/auth",Auth);
 zomato.use("/restaurant", Restaurant);
 zomato.use("/food", Food);
+zomato.use("/image", Image);
 
 zomato.get("/" , (req, res) => res.json({ message: "Setup success"}));
 
