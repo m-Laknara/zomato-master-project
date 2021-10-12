@@ -10,6 +10,7 @@ import passport from "passport";
 
 
 import googleAuthConfig from "./config/google.config";
+import routeConfig from "./config/route_modules";
 
 import Auth from "./API/Auth";
 import Restaurant from "./API/Restaurant";
@@ -34,6 +35,7 @@ zomato.use(cors());
 
 //passport configuration
 googleAuthConfig(passport);
+routeConfig(passport);
 //application routes
 zomato.use("/auth",Auth);
 zomato.use("/restaurant", Restaurant);
