@@ -17,20 +17,20 @@ const upload = multer({ storage });
 Route /image
 
 */ 
-Router.post("/", upload.array(["file1", "file2", "file3"], 4)  , async (req, res) =>{
+Router.post("/", upload.single("file")  , async (req, res) =>{
     try{
 
       const file = req.file;
-    //  const bucketOptions = {
-    //    Bucket: "shapeaiproject",
-    //    key: file.originalname,
-    //    Body: file.buffer,
-    //    ContentType: file.mimetype,
-    //    ACL: "public-read",
-    //  };
+      const bucketOptions = {
+        Bucket: "shapeaiproject",
+        Key: file.originalname,
+        Body: file.buffer,
+        ContentType: file.mimetype,
+        ACL: "public-read",
+      };
 
-    //const uploadImage = await s3Upload(bucketOptions);
-    return res.status(200).json({file});
+    const uploadImage = await s3Upload(bucketOptions);
+    return res.status(200).json({uploadImage});
 
     }catch(error){
         return res.status(500).json({ error: error.message});
